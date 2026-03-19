@@ -3,70 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RETURN TO TRADITION — The Way of the Trenches</title>
+  <title>$RTT — Return to Tradition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg:        #1a0e00;
-      --bg2:       #120a00;
-      --clay:      #c4621a;
-      --clay-dim:  rgba(196,98,26,0.15);
-      --clay-glow: rgba(196,98,26,0.5);
-      --gold:      #f5c842;
-      --gold-dim:  rgba(245,200,66,0.12);
-      --gold-glow: rgba(245,200,66,0.45);
-      --bone:      #f0e6c8;
-      --mud:       #3d1f00;
-      --moss:      #4a7c2f;
-      --blood:     #8b1a1a;
-      --border:    rgba(196,98,26,0.25);
-      --border-g:  rgba(245,200,66,0.2);
-      --muted:     rgba(240,230,200,0.45);
-      --font:      'Inter', sans-serif;
-      --display:   'Bebas Neue', sans-serif;
-      --marker:    'Permanent Marker', cursive;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
+    :root {
+      --sky:    #7ec8e3;
+      --sky2:   #b8e4f5;
+      --green:  #3a7d2c;
+      --green2: #5aaa3e;
+      --dirt:   #8B6325;
+      --wood:   #c4892a;
+      --cream:  #fffbe8;
+      --dark:   #1a2e0a;
+      --gold:   #f5c842;
+      --tg:     #229ED9;
+    }
+
     body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--bone);
-      min-height: 100vh;
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
       overflow-x: hidden;
     }
 
-    /* ── CAVE TEXTURE OVERLAY ──────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        radial-gradient(ellipse at 20% 10%, rgba(196,98,26,0.07) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(139,26,26,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(245,200,66,0.03) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* grain texture */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    nav, main, footer, section { position: relative; z-index: 1; }
-
-    /* ── NAV ──────────────────────────────────────── */
+    /* ── NAV ──────────────────────────────────────────────── */
     nav {
       position: sticky;
       top: 0;
@@ -74,511 +39,536 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.9rem 2.5rem;
-      border-bottom: 1px solid var(--border);
-      background: rgba(26,14,0,0.9);
-      backdrop-filter: blur(14px);
+      padding: 0.85rem 2.5rem;
+      background: var(--green);
+      border-bottom: 3px solid var(--dark);
+      box-shadow: 0 3px 0 var(--dark);
     }
 
     .logo {
-      font-family: var(--display);
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
       color: var(--gold);
-      text-shadow: 0 0 20px var(--gold-glow);
+      text-shadow: 2px 2px 0 var(--dark);
     }
 
-    .nav-links {
+    .nav-right {
       display: flex;
       align-items: center;
-      gap: 1.8rem;
-      list-style: none;
+      gap: 1rem;
     }
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .tg-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, #229ED9, #1a7fbf);
-      color: #fff !important;
-      font-weight: 700 !important;
-      padding: 0.45rem 1.1rem !important;
-      border-radius: 8px;
-      transition: all 0.2s !important;
-      box-shadow: 0 0 18px rgba(34,158,217,0.3);
-    }
-    .tg-btn:hover {
-      box-shadow: 0 0 28px rgba(34,158,217,0.5) !important;
-      color: #fff !important;
-      transform: translateY(-1px);
-    }
-
-    .ca-nav {
+    .nav-ca {
       font-family: monospace;
-      font-size: 0.65rem;
-      color: var(--clay) !important;
-      letter-spacing: 0.03em !important;
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.7rem !important;
-      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--cream);
+      background: rgba(0,0,0,0.25);
+      border: 2px solid rgba(255,255,255,0.2);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s !important;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
     }
-    .ca-nav:hover { color: var(--gold) !important; border-color: var(--gold) !important; }
+    .nav-ca:hover { background: rgba(0,0,0,0.4); border-color: var(--gold); color: var(--gold); }
 
-    /* ── HERO ─────────────────────────────────────── */
+    .btn-tg {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--tg);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 2px solid var(--dark);
+      box-shadow: 3px 3px 0 var(--dark);
+      transition: all 0.15s;
+    }
+    .btn-tg:hover  { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--dark); }
+    .btn-tg:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--dark); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
     .hero {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 7rem 2rem 5rem;
+      background: linear-gradient(180deg, var(--sky) 0%, var(--sky2) 40%, #c8e8a0 70%, #6aaa40 100%);
+      border-bottom: 4px solid var(--dark);
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 2rem 0;
       text-align: center;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .hero-eyebrow {
+    /* clouds */
+    .cloud {
+      position: absolute;
+      background: rgba(255,255,255,0.75);
+      border-radius: 50px;
+      filter: blur(1px);
+    }
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud-1 { width: 120px; height: 40px; top: 10%; left: 8%; animation: drift 18s linear infinite; }
+    .cloud-1::before { width: 60px; height: 55px; top: -28px; left: 18px; }
+    .cloud-1::after  { width: 50px; height: 45px; top: -20px; left: 50px; }
+    .cloud-2 { width: 90px; height: 30px; top: 18%; right: 12%; animation: drift 25s linear infinite reverse; }
+    .cloud-2::before { width: 45px; height: 42px; top: -22px; left: 12px; }
+    .cloud-2::after  { width: 40px; height: 36px; top: -16px; left: 38px; }
+    .cloud-3 { width: 70px; height: 25px; top: 8%; left: 45%; animation: drift 20s linear infinite; }
+    .cloud-3::before { width: 38px; height: 34px; top: -18px; left: 10px; }
+    .cloud-3::after  { width: 30px; height: 28px; top: -13px; left: 30px; }
+    @keyframes drift {
+      from { transform: translateX(-60px); }
+      to   { transform: translateX(60px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-badge {
       display: inline-block;
-      font-family: var(--marker);
-      font-size: 1rem;
-      color: var(--clay);
-      margin-bottom: 1rem;
-      animation: fadeUp 0.6s ease both;
-      transform-origin: center;
+      background: var(--wood);
+      color: var(--cream);
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      border: 2px solid var(--dark);
+      box-shadow: 2px 2px 0 var(--dark);
+      margin-bottom: 1.2rem;
     }
 
     .hero-title {
-      font-family: var(--display);
-      font-size: clamp(4.5rem, 14vw, 9rem);
-      line-height: 0.9;
-      letter-spacing: 0.03em;
-      margin-bottom: 0.6rem;
-      animation: fadeUp 0.6s 0.1s ease both;
-      background: linear-gradient(160deg, var(--bone) 0%, var(--gold) 50%, var(--clay) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 40px rgba(245,200,66,0.2));
+      font-family: 'Bangers', cursive;
+      font-size: clamp(4.5rem, 14vw, 8.5rem);
+      line-height: 0.88;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+      text-shadow:
+        4px 4px 0 var(--green),
+        -2px -2px 0 rgba(255,255,255,0.4);
+      margin-bottom: 0.4rem;
     }
 
-    .hero-subtitle {
-      font-family: var(--display);
-      font-size: clamp(1.4rem, 4vw, 2.5rem);
-      letter-spacing: 0.08em;
-      color: var(--clay);
+    .hero-title span {
+      color: var(--green);
+      text-shadow:
+        4px 4px 0 var(--dark),
+        -1px -1px 0 rgba(255,255,255,0.2);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--dark);
+      background: rgba(255,255,255,0.55);
+      padding: 0.4rem 1.2rem;
+      border-radius: 8px;
+      border: 2px solid var(--dark);
       margin-bottom: 2rem;
-      animation: fadeUp 0.6s 0.18s ease both;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 540px;
-      margin: 0 auto 3rem;
-      animation: fadeUp 0.6s 0.26s ease both;
-    }
-
-    .hero-art {
-      font-size: 5rem;
-      margin: 1rem 0 2rem;
-      animation: fadeUp 0.6s 0.12s ease both, float 4s ease-in-out infinite;
-      display: block;
-      filter: drop-shadow(0 10px 30px rgba(196,98,26,0.4));
-    }
-
-    .cta-group {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 4rem;
-      animation: fadeUp 0.6s 0.32s ease both;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, var(--clay), #8B3a0a);
-      color: var(--bone);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.75rem 1.8rem;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.25s;
-      box-shadow: 0 4px 30px rgba(196,98,26,0.35);
-      letter-spacing: 0.04em;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 40px rgba(196,98,26,0.55);
-      background: linear-gradient(135deg, #d4722a, var(--clay));
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--gold-dim);
-      border: 1px solid var(--border-g);
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.75rem 1.8rem;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.25s;
-      letter-spacing: 0.04em;
-    }
-    .btn-secondary:hover {
-      background: rgba(245,200,66,0.2);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 30px rgba(245,200,66,0.2);
-    }
-
-    /* CA Display */
-    .ca-display {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      background: var(--clay-dim);
-      border: 1px solid var(--border);
-      padding: 0.75rem 1.4rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.25s;
-      animation: fadeUp 0.6s 0.38s ease both;
-    }
-    .ca-display:hover {
-      border-color: var(--clay);
-      background: rgba(196,98,26,0.2);
-      box-shadow: 0 0 24px var(--clay-dim);
-    }
-    .ca-label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--clay);
-    }
-    .ca-address {
-      font-family: monospace;
-      font-size: 0.72rem;
-      color: var(--gold);
       letter-spacing: 0.02em;
     }
-    .ca-copy-hint {
-      font-size: 0.72rem;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-    .ca-display:hover .ca-copy-hint { color: var(--gold); }
 
-    /* ── MANIFESTO BANNER ─────────────────────────── */
-    .manifesto {
-      background: linear-gradient(90deg, var(--mud) 0%, #2a1200 50%, var(--mud) 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      overflow: hidden;
-    }
-    .manifesto-text {
-      font-family: var(--marker);
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      color: var(--bone);
-      line-height: 1.5;
-      max-width: 760px;
+    .hero-img-wrap {
+      position: relative;
+      width: 320px;
+      max-width: 80vw;
       margin: 0 auto;
-    }
-    .manifesto-text .highlight { color: var(--gold); }
-    .manifesto-text .red { color: #e05555; }
-
-    /* ── PILLARS SECTION ──────────────────────────── */
-    .pillars {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
+      animation: bob 3.5s ease-in-out infinite;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .section-header .eyebrow {
-      font-family: var(--marker);
-      color: var(--clay);
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
+    .hero-img-wrap img {
+      width: 100%;
+      border-radius: 20px;
+      border: 4px solid var(--dark);
+      box-shadow: 8px 8px 0 var(--dark);
       display: block;
     }
-    .section-header h2 {
-      font-family: var(--display);
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      letter-spacing: 0.04em;
-      color: var(--bone);
-      line-height: 1;
+
+    .hero-img-label {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 1.2rem;
+      border-radius: 20px;
+      border: 3px solid var(--dark);
+      box-shadow: 3px 3px 0 var(--dark);
+      white-space: nowrap;
     }
-    .section-header p {
-      color: var(--muted);
+
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-14px); }
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      margin-top: 3rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-main {
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 2rem;
+      border-radius: 12px;
+      border: 3px solid var(--dark);
+      box-shadow: 5px 5px 0 var(--dark);
+      text-decoration: none;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-main:hover  { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--dark); }
+    .btn-main:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--dark); }
+    .btn-buy  { background: var(--green2); color: var(--cream); }
+    .btn-tg2  { background: var(--tg); color: #fff; }
+
+    /* CA strip */
+    .ca-strip {
+      background: var(--dark);
+      color: var(--gold);
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.6rem 2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: center;
+      border-top: 3px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .ca-strip:hover { background: #2a4810; }
+    .ca-label { color: rgba(255,255,255,0.5); font-size: 0.65rem; }
+    .ca-copied { color: var(--green2); }
+
+    /* ── TICKER ──────────────────────────────────────────── */
+    .ticker {
+      background: var(--green);
+      border-top: 3px solid var(--dark);
+      border-bottom: 3px solid var(--dark);
+      padding: 0.6rem 0;
+      overflow: hidden;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 2.5rem;
+      animation: ticker 22s linear infinite;
+      width: max-content;
+    }
+    .tick {
+      font-family: 'Bangers', cursive;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .tick::before { content: '🌿 '; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 4px solid var(--dark);
+    }
+
+    .about-text {
+      padding: 5rem 4rem;
+      background: var(--cream);
+      border-right: 4px solid var(--dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-text .tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 900;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.2rem 0.8rem;
+      border-radius: 6px;
+      border: 2px solid var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .about-text h2 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.75;
+      color: #3a3a2a;
+      margin-bottom: 1rem;
+    }
+
+    .about-img {
+      background: linear-gradient(160deg, #a8d878 0%, #6aaa40 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-img::before {
+      content: '🌲 🏔️ 🌲';
+      position: absolute;
+      top: 1.5rem;
+      font-size: 1.6rem;
+      letter-spacing: 0.5rem;
+      opacity: 0.4;
+    }
+
+    .about-img img {
+      width: 260px;
+      max-width: 100%;
+      border-radius: 16px;
+      border: 4px solid var(--dark);
+      box-shadow: 8px 8px 0 var(--dark);
+    }
+
+    /* ── PILLARS ─────────────────────────────────────────── */
+    .pillars {
+      background: #f0f7e0;
+      padding: 5rem 2rem;
+      border-bottom: 4px solid var(--dark);
+    }
+
+    .pillars-hd {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .pillars-hd h2 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 0.05em;
+      color: var(--dark);
+    }
+    .pillars-hd p {
       font-size: 0.95rem;
-      margin-top: 0.8rem;
+      font-weight: 700;
+      color: #5a5a3a;
+      margin-top: 0.4rem;
     }
 
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+      gap: 1.5rem;
+      max-width: 1060px;
+      margin: 0 auto;
     }
 
-    .pillar-card {
-      background: rgba(61,31,0,0.5);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
+    .pillar {
+      background: var(--cream);
+      border: 3px solid var(--dark);
+      border-radius: 18px;
+      box-shadow: 6px 6px 0 var(--dark);
+      padding: 2.5rem 1.8rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.35s;
+      transition: all 0.15s;
     }
+    .pillar:hover { transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--dark); }
 
-    .pillar-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 50% 0%, rgba(196,98,26,0.08) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.35s;
-    }
-    .pillar-card:hover::before { opacity: 1; }
-    .pillar-card:hover {
-      border-color: rgba(196,98,26,0.5);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(196,98,26,0.12);
-    }
-
-    .pillar-card.gold-card::before {
-      background: radial-gradient(circle at 50% 0%, rgba(245,200,66,0.1) 0%, transparent 60%);
-    }
-    .pillar-card.gold-card:hover {
-      border-color: rgba(245,200,66,0.4);
-      box-shadow: 0 20px 60px rgba(245,200,66,0.1);
-    }
-
-    .pillar-card.moss-card::before {
-      background: radial-gradient(circle at 50% 0%, rgba(74,124,47,0.12) 0%, transparent 60%);
-    }
-    .pillar-card.moss-card:hover {
-      border-color: rgba(74,124,47,0.45);
-      box-shadow: 0 20px 60px rgba(74,124,47,0.1);
-    }
-
-    .pillar-icon {
-      font-size: 3.5rem;
-      display: block;
-      margin-bottom: 1.2rem;
-      animation: float 3s ease-in-out infinite;
-    }
-    .pillar-icon:nth-child(1) { animation-delay: 0s; }
-
-    .pillar-num {
-      font-family: var(--display);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      color: var(--clay);
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
-    .gold-card .pillar-num { color: var(--gold); }
-    .moss-card .pillar-num { color: #6db84a; }
-
-    .pillar-title {
-      font-family: var(--display);
+    .pillar-emoji { font-size: 3.2rem; display: block; margin-bottom: 1rem; }
+    .pillar-name {
+      font-family: 'Bangers', cursive;
       font-size: 2rem;
-      letter-spacing: 0.05em;
-      color: var(--bone);
-      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
     }
-
     .pillar-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .pillar-motto {
-      margin-top: 1.2rem;
-      font-family: var(--marker);
       font-size: 0.9rem;
-      color: var(--clay);
-      display: block;
-    }
-    .gold-card .pillar-motto { color: var(--gold); }
-    .moss-card .pillar-motto { color: #6db84a; }
-
-    /* ── THE CODE ─────────────────────────────────── */
-    .code-section {
-      background: linear-gradient(180deg, transparent, rgba(61,31,0,0.6) 20%, rgba(61,31,0,0.6) 80%, transparent);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 6rem 2rem;
-    }
-
-    .code-inner {
-      max-width: 820px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .code-inner h2 {
-      font-family: var(--display);
-      font-size: clamp(2.5rem, 6vw, 3.8rem);
-      letter-spacing: 0.05em;
-      margin-bottom: 3rem;
-      color: var(--bone);
-    }
-
-    .commandments {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-      text-align: left;
-    }
-
-    .commandment {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      background: rgba(26,14,0,0.8);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.1rem 1.3rem;
-      transition: all 0.2s;
-    }
-    .commandment:hover {
-      border-color: var(--clay);
-      background: var(--clay-dim);
-    }
-
-    .cmd-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
-    .cmd-text {
-      font-size: 0.88rem;
-      color: var(--bone);
-      line-height: 1.5;
-      font-weight: 600;
-    }
-    .cmd-text span { color: var(--clay); }
-
-    /* ── SCROLL TICKER ────────────────────────────── */
-    .ticker-wrap {
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0.65rem 0;
-      background: rgba(61,31,0,0.4);
-    }
-
-    .ticker-inner {
-      display: flex;
-      gap: 3rem;
-      animation: scroll 28s linear infinite;
-      width: max-content;
-    }
-
-    .ticker-item {
-      font-family: var(--display);
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      color: var(--clay);
-      white-space: nowrap;
-    }
-
-    .ticker-item.gold { color: var(--gold); }
-    .ticker-item::before { content: '✦ '; }
-
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── COMMUNITY ────────────────────────────────── */
-    .community {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 6rem 2rem 7rem;
-      text-align: center;
-    }
-
-    .community h2 {
-      font-family: var(--display);
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
-      letter-spacing: 0.04em;
-      color: var(--bone);
-      margin-bottom: 1rem;
-    }
-
-    .community p {
-      color: var(--muted);
-      font-size: 1rem;
+      font-weight: 700;
       line-height: 1.7;
-      max-width: 500px;
+      color: #4a4a2a;
+    }
+    .pillar-quote {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--green);
+      font-style: italic;
+    }
+
+    .pillar-1 { border-top: 6px solid var(--wood); }
+    .pillar-2 { border-top: 6px solid var(--green2); }
+    .pillar-3 { border-top: 6px solid var(--gold); }
+
+    /* ── HOW TO BUY ──────────────────────────────────────── */
+    .howtobuy {
+      background: var(--green);
+      padding: 5rem 2rem;
+      border-bottom: 4px solid var(--dark);
+      text-align: center;
+    }
+
+    .howtobuy h2 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-shadow: 3px 3px 0 var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .howtobuy > p { color: rgba(255,255,255,0.75); font-size: 0.95rem; font-weight: 700; margin-bottom: 3rem; }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      max-width: 960px;
       margin: 0 auto 3rem;
     }
 
-    .community-cards {
+    .step {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      flex: 1;
+      min-width: 200px;
+      max-width: 220px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .step:hover { background: rgba(255,255,255,0.18); border-color: var(--gold); }
+
+    .step-num {
+      font-family: 'Bangers', cursive;
+      font-size: 2.5rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .step-name {
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .step-desc { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+    .ca-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 0.9rem 1.6rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ca-box:hover { border-color: var(--gold); background: rgba(0,0,0,0.45); }
+    .ca-box-label { font-size: 0.65rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); }
+    .ca-box-addr { font-family: monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.03em; }
+    .ca-box-hint { font-size: 0.72rem; font-weight: 800; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .ca-box:hover .ca-box-hint { color: var(--gold); }
+
+    /* ── COMMUNITY ───────────────────────────────────────── */
+    .community {
+      background: var(--cream);
+      padding: 5rem 2rem;
+      text-align: center;
+      border-bottom: 4px solid var(--dark);
+    }
+
+    .community h2 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 0.05em;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .community .sub { font-size: 0.95rem; font-weight: 700; color: #5a5a3a; margin-bottom: 3rem; }
+
+    .comm-cards {
       display: flex;
       justify-content: center;
       gap: 1.2rem;
       flex-wrap: wrap;
     }
 
-    .community-card {
-      background: rgba(61,31,0,0.6);
-      border: 1px solid var(--border);
+    .comm-card {
+      background: var(--cream);
+      border: 3px solid var(--dark);
       border-radius: 16px;
+      box-shadow: 5px 5px 0 var(--dark);
       padding: 2rem 2.5rem;
       text-decoration: none;
-      color: var(--bone);
-      transition: all 0.3s;
-      min-width: 200px;
+      color: var(--dark);
+      min-width: 180px;
+      transition: all 0.15s;
+      text-align: center;
     }
-    .community-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 50px rgba(196,98,26,0.15);
-    }
-    .community-card.tg-card {
-      border-color: rgba(34,158,217,0.3);
-    }
-    .community-card.tg-card:hover {
-      border-color: rgba(34,158,217,0.6);
-      box-shadow: 0 16px 50px rgba(34,158,217,0.15);
-    }
+    .comm-card:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--dark); }
 
-    .community-card-icon { font-size: 2.5rem; display: block; margin-bottom: 0.8rem; }
-    .community-card-name {
-      font-family: var(--display);
-      font-size: 1.2rem;
+    .comm-card-icon { font-size: 2.4rem; display: block; margin-bottom: 0.6rem; }
+    .comm-card-name {
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
       letter-spacing: 0.06em;
-      margin-bottom: 0.3rem;
     }
-    .community-card-desc { font-size: 0.78rem; color: var(--muted); }
+    .comm-card-desc { font-size: 0.78rem; font-weight: 700; color: #6a6a4a; margin-top: 0.2rem; }
 
-    /* ── FOOTER ───────────────────────────────────── */
+    /* ── FOOTER ──────────────────────────────────────────── */
     footer {
-      border-top: 1px solid var(--border);
+      background: var(--dark);
       padding: 2rem 2.5rem;
       display: flex;
       align-items: center;
@@ -588,75 +578,40 @@
     }
 
     .footer-logo {
-      font-family: var(--display);
-      font-size: 1.2rem;
-      letter-spacing: 0.06em;
+      font-family: 'Bangers', cursive;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
       color: var(--gold);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer-links a {
-      color: var(--muted);
+      color: rgba(255,255,255,0.45);
       text-decoration: none;
       font-size: 0.82rem;
+      font-weight: 700;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--clay); }
+    .footer-links a:hover { color: var(--gold); }
 
     .footer-disclaimer {
       width: 100%;
       font-size: 0.68rem;
-      color: rgba(240,230,200,0.18);
+      font-weight: 700;
+      color: rgba(255,255,255,0.18);
       text-align: center;
     }
 
-    /* ── DIVIDER ──────────────────────────────────── */
-    .cave-divider {
-      text-align: center;
-      color: var(--border);
-      font-size: 1.2rem;
-      letter-spacing: 0.4em;
-      padding: 0.5rem 0;
-      user-select: none;
-    }
-
-    /* ── ANIMATIONS ───────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.5; transform: scale(0.85); }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { filter: drop-shadow(0 0 30px rgba(245,200,66,0.2)); }
-      50%       { filter: drop-shadow(0 0 50px rgba(245,200,66,0.45)); }
-    }
-
-    .hero-title { animation: fadeUp 0.6s 0.08s ease both, glowPulse 4s 1s ease infinite; }
-
-    /* ── RESPONSIVE ───────────────────────────────── */
-    @media (max-width: 760px) {
-      nav { padding: 0.8rem 1.2rem; }
-      .nav-links { display: none; }
-      .hero { padding: 5rem 1.25rem 4rem; }
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-ca { display: none; }
+      .about { grid-template-columns: 1fr; }
+      .about-text { padding: 3rem 1.5rem; border-right: none; border-bottom: 4px solid var(--dark); }
+      .about-img { padding: 3rem 1.5rem; }
       .pillars-grid { grid-template-columns: 1fr; }
-      .commandments { grid-template-columns: 1fr; }
+      .steps { flex-direction: column; align-items: center; }
       footer { flex-direction: column; align-items: flex-start; }
-      .ca-address { font-size: 0.58rem; max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
     }
   </style>
 </head>
@@ -665,315 +620,223 @@
 <!-- NAV -->
 <nav>
   <div class="logo">$RTT</div>
-  <ul class="nav-links">
-    <li><a href="#pillars">The Way</a></li>
-    <li><a href="#code">The Code</a></li>
-    <li><a href="#community">Community</a></li>
-    <li>
-      <a class="ca-nav" onclick="copyCA()" id="nav-ca">
-        CA: ReTr4d1...pump
-      </a>
-    </li>
-    <li>
-      <a class="tg-btn" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
-        ✈ Telegram
-      </a>
-    </li>
-  </ul>
+  <div class="nav-right">
+    <div class="nav-ca" onclick="copyCA()">CA: ReTr4d1t10nXxXxXxXxXxXxXxXxXxXpump</div>
+    <a class="btn-tg" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
+      ✈ Telegram
+    </a>
+  </div>
 </nav>
 
-<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <span class="hero-eyebrow">🦴 A message from the trenches</span>
-    <span class="hero-art">🪨</span>
-    <h1 class="hero-title">RETURN TO<br>TRADITION</h1>
-    <div class="hero-subtitle">The Ancient Art of the Trenches</div>
-    <p class="hero-desc">
-      Modern man forgot the old ways. He bought bots. He chased signals.
-      He paid for alpha groups. He got rugged. The ancients knew better —
-      bag deep, shill hard, stay in the trenches until Valhalla.
-    </p>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 On Solana</div>
 
-    <div class="cta-group">
-      <a class="btn-primary" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
-        ✈ Join the Tribe
-      </a>
-      <a class="btn-secondary" href="#">
-        🔥 Buy $RTT
-      </a>
+    <h1 class="hero-title">
+      RETURN TO<br><span>TRADITION</span>
+    </h1>
+
+    <div class="hero-sub">No bots. No signals. Just bags, trenches and soul.</div>
+
+    <div class="hero-img-wrap">
+      <img src="RTT.png" alt="Return to Tradition" />
+      <div class="hero-img-label">$RTT — RETURN TO TRADITION</div>
     </div>
 
-    <div class="ca-display" onclick="copyCA()">
-      <span class="ca-label">CA</span>
-      <span class="ca-address" id="ca-addr">ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump</span>
-      <span class="ca-copy-hint" id="ca-copy">⎘ Copy</span>
-    </div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker-wrap">
-    <div class="ticker-inner">
-      <span class="ticker-item">RETURN TO TRADITION</span>
-      <span class="ticker-item gold">BAG DEEP OR GO HOME</span>
-      <span class="ticker-item">SHILL EVERYTHING</span>
-      <span class="ticker-item gold">THE TRENCHES ARE HOME</span>
-      <span class="ticker-item">NO BOTS ONLY SOUL</span>
-      <span class="ticker-item gold">HOLD THE LINE</span>
-      <span class="ticker-item">PRIMITIVE IS PROFITABLE</span>
-      <span class="ticker-item gold">THE ANCIENTS WERE RIGHT</span>
-      <!-- duplicate for seamless loop -->
-      <span class="ticker-item">RETURN TO TRADITION</span>
-      <span class="ticker-item gold">BAG DEEP OR GO HOME</span>
-      <span class="ticker-item">SHILL EVERYTHING</span>
-      <span class="ticker-item gold">THE TRENCHES ARE HOME</span>
-      <span class="ticker-item">NO BOTS ONLY SOUL</span>
-      <span class="ticker-item gold">HOLD THE LINE</span>
-      <span class="ticker-item">PRIMITIVE IS PROFITABLE</span>
-      <span class="ticker-item gold">THE ANCIENTS WERE RIGHT</span>
+    <div class="hero-ctas">
+      <a class="btn-main btn-buy" href="#" target="_blank" rel="noopener">🔥 Buy $RTT</a>
+      <a class="btn-main btn-tg2" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">✈ Join Telegram</a>
     </div>
   </div>
+</section>
 
-  <!-- MANIFESTO -->
-  <div class="manifesto">
-    <p class="manifesto-text">
-      Modern man is <span class="red">weak</span>. He exits at <span class="red">-20%</span>.
-      He trusts <span class="red">CT influencers</span>. He has never felt the warmth of a
-      <span class="highlight">1000x</span> from the depths of the trenches.
-      Return to what works. Return to <span class="highlight">tradition</span>.
-    </p>
+<!-- CA STRIP -->
+<div class="ca-strip" onclick="copyCA()">
+  <span class="ca-label">CONTRACT ADDRESS</span>
+  <span id="ca-text">ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump</span>
+  <span id="ca-hint">⎘ click to copy</span>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="tick">RETURN TO TRADITION</span>
+    <span class="tick">BAG DEEP</span>
+    <span class="tick">SHILL EVERYTHING</span>
+    <span class="tick">THE TRENCHES ARE HOME</span>
+    <span class="tick">NO BOTS ONLY SOUL</span>
+    <span class="tick">HOLD THE LINE</span>
+    <span class="tick">WAGMI</span>
+    <span class="tick">RETURN TO TRADITION</span>
+    <span class="tick">BAG DEEP</span>
+    <span class="tick">SHILL EVERYTHING</span>
+    <span class="tick">THE TRENCHES ARE HOME</span>
+    <span class="tick">NO BOTS ONLY SOUL</span>
+    <span class="tick">HOLD THE LINE</span>
+    <span class="tick">WAGMI</span>
   </div>
+</div>
 
-  <!-- PILLARS -->
-  <section class="pillars" id="pillars">
-    <div class="section-header">
-      <span class="eyebrow">✦ The Three Sacred Pillars ✦</span>
-      <h2>THE OLD WAYS</h2>
-      <p>Before bots. Before KOLs. Before rugs. There were the ancient methods.</p>
-    </div>
-
-    <div class="pillars-grid">
-
-      <!-- TRENCHES -->
-      <div class="pillar-card">
-        <span class="pillar-icon">⚔️</span>
-        <div class="pillar-num">Pillar I</div>
-        <div class="pillar-title">THE TRENCHES</div>
-        <p class="pillar-desc">
-          Modern degens fear the red candle. The trench warrior embraces it.
-          Every dip is a gift. Every dump is a buying opportunity sent by the
-          crypto gods. You were not built for comfort. You were built for the
-          trenches — the place where legends are forged and rugs are merely
-          tuition fees for the next play.
-        </p>
-        <span class="pillar-motto">"If it doesn't make you nauseous, you're not in deep enough"</span>
-      </div>
-
-      <!-- BAGWORK -->
-      <div class="pillar-card gold-card">
-        <span class="pillar-icon">🎒</span>
-        <div class="pillar-num">Pillar II</div>
-        <div class="pillar-title">BAGWORK</div>
-        <p class="pillar-desc">
-          True bagwork is a sacred discipline. You do not panic sell your
-          conviction. You accumulate in silence, average down with discipline,
-          and hold with the patience of a caveman waiting for the mammoth.
-          The bag does not move — you move around the bag. Every wallet should
-          carry scars. Every position should have a story.
-        </p>
-        <span class="pillar-motto">"A heavy bag builds character. A sold bag builds regret."</span>
-      </div>
-
-      <!-- SHILL -->
-      <div class="pillar-card moss-card">
-        <span class="pillar-icon">📣</span>
-        <div class="pillar-num">Pillar III</div>
-        <div class="pillar-title">THE SHILL</div>
-        <p class="pillar-desc">
-          Before paid promotions and VC marketing budgets, there was the pure
-          shill. Man-to-man. Group-to-group. Telegram to Twitter to Discord.
-          The ancient shiller asked nothing in return — only that the line
-          went up. Post it everywhere. Tag everyone. Believe in the cause.
-          Organic shilling is the highest form of devotion.
-        </p>
-        <span class="pillar-motto">"He who shills without bags is a herald. He who shills with bags is a prophet."</span>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="cave-divider">✦ ✦ ✦ ✦ ✦</div>
-
-  <!-- THE CODE -->
-  <section class="code-section" id="code">
-    <div class="code-inner">
-      <h2>THE CODE OF THE ANCIENTS</h2>
-
-      <div class="commandments">
-        <div class="commandment">
-          <span class="cmd-icon">🪨</span>
-          <div class="cmd-text">
-            <span>Never sell in fear.</span> The red candle is a test of faith, not a signal to exit.
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">🔥</span>
-          <div class="cmd-text">
-            <span>Shill daily.</span> If you haven't posted about your bag today, did you even hold it?
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">🦴</span>
-          <div class="cmd-text">
-            <span>Average down.</span> The ancients called it "buying the dip". We call it surviving.
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">⚡</span>
-          <div class="cmd-text">
-            <span>No paper hands.</span> Diamond hands were forged in the trenches, not in the CT timeline.
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">🎯</span>
-          <div class="cmd-text">
-            <span>Community over everything.</span> A token without a tribe is just a smart contract.
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">🌿</span>
-          <div class="cmd-text">
-            <span>Trust the chart.</span> And if the chart betrays you, trust the conviction behind the chart.
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">⚔️</span>
-          <div class="cmd-text">
-            <span>Stay in the trenches.</span> The pumps reward those who never left. Never leave.
-          </div>
-        </div>
-        <div class="commandment">
-          <span class="cmd-icon">🪬</span>
-          <div class="cmd-text">
-            <span>Ape with purpose.</span> Know your entry, know your thesis, know you're probably ngmi regardless.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TICKER 2 -->
-  <div class="ticker-wrap" style="animation: none;">
-    <div class="ticker-inner" style="animation-direction: reverse; animation-duration: 22s;">
-      <span class="ticker-item gold">WAGMI</span>
-      <span class="ticker-item">NGMI IF YOU SOLD</span>
-      <span class="ticker-item gold">THE TRENCHES NEVER SLEEP</span>
-      <span class="ticker-item">100X OR NOTHING</span>
-      <span class="ticker-item gold">BUY THE BLOOD</span>
-      <span class="ticker-item">RETURN TO TRADITION</span>
-      <span class="ticker-item gold">SHILL OR BE SHILLED</span>
-      <span class="ticker-item">BAGWORK IS HOLY</span>
-      <!-- duplicate -->
-      <span class="ticker-item gold">WAGMI</span>
-      <span class="ticker-item">NGMI IF YOU SOLD</span>
-      <span class="ticker-item gold">THE TRENCHES NEVER SLEEP</span>
-      <span class="ticker-item">100X OR NOTHING</span>
-      <span class="ticker-item gold">BUY THE BLOOD</span>
-      <span class="ticker-item">RETURN TO TRADITION</span>
-      <span class="ticker-item gold">SHILL OR BE SHILLED</span>
-      <span class="ticker-item">BAGWORK IS HOLY</span>
-    </div>
-  </div>
-
-  <!-- COMMUNITY -->
-  <section class="community" id="community">
-    <h2>JOIN THE TRIBE</h2>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <span class="tag">About $RTT</span>
+    <h2>MODERN MAN<br>FORGOT THE OLD WAYS</h2>
     <p>
-      The trenches are better with brothers. Find your people.
-      Share your bags. Shill together. Rise together.
+      He bought bots. He chased signals. He paid for alpha calls.
+      He got rugged by KOLs. He sold the bottom. He is ngmi.
     </p>
+    <p>
+      The ancient ones knew better. They bagged in silence. They shilled
+      with passion. They sat in the trenches until the green arrived.
+      They did not panic. They did not paper hand. They returned to tradition.
+    </p>
+    <p>
+      <strong>$RTT</strong> is not a token. It is a way of life.
+      The call of the mountains, the forest, the simple life —
+      but also the call of the trenches, the 5am candle, the community
+      that holds together when everything dumps.
+    </p>
+  </div>
+  <div class="about-img">
+    <img src="RTT.png" alt="Return to Tradition" />
+  </div>
+</section>
 
-    <div class="community-cards">
-      <a class="community-card tg-card" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
-        <span class="community-card-icon">✈️</span>
-        <div class="community-card-name">Telegram</div>
-        <div class="community-card-desc">Main community portal</div>
-      </a>
-      <a class="community-card" href="#" target="_blank" rel="noopener">
-        <span class="community-card-icon">🐦</span>
-        <div class="community-card-name">Twitter / X</div>
-        <div class="community-card-desc">Daily shill training</div>
-      </a>
-      <a class="community-card" href="#" target="_blank" rel="noopener">
-        <span class="community-card-icon">🔥</span>
-        <div class="community-card-name">Pump.Fun</div>
-        <div class="community-card-desc">Buy $RTT</div>
-      </a>
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="pillars-hd">
+    <h2>THE THREE TRADITIONS</h2>
+    <p>The ancient methods. Rediscovered. Applied to crypto.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar pillar-1">
+      <span class="pillar-emoji">⚔️</span>
+      <div class="pillar-name">THE TRENCHES</div>
+      <p class="pillar-desc">
+        Every legend was forged in the trenches. The red candle is not a
+        warning — it is an invitation. Stay in, buy more, survive longer
+        than the paper hands. The trenches never lie.
+      </p>
+      <div class="pillar-quote">"If it doesn't hurt, you're not in deep enough."</div>
     </div>
-  </section>
+    <div class="pillar pillar-2">
+      <span class="pillar-emoji">🎒</span>
+      <div class="pillar-name">BAGWORK</div>
+      <p class="pillar-desc">
+        True bagwork is a sacred discipline. Accumulate in silence.
+        Average down with conviction. Hold with the patience of a man
+        who has seen mountains form. The bag does not move — you do.
+      </p>
+      <div class="pillar-quote">"A sold bag builds regret. A held bag builds legacy."</div>
+    </div>
+    <div class="pillar pillar-3">
+      <span class="pillar-emoji">📣</span>
+      <div class="pillar-name">THE SHILL</div>
+      <p class="pillar-desc">
+        Before paid promotions and VC budgets, there was the pure shill.
+        Man to man. Group to group. The ancient shiller asked nothing in
+        return — only that the line went up. Post it everywhere.
+      </p>
+      <div class="pillar-quote">"He who shills with bags is a prophet."</div>
+    </div>
+  </div>
+</section>
 
-</main>
+<!-- HOW TO BUY -->
+<section class="howtobuy" id="buy">
+  <h2>HOW TO BUY $RTT</h2>
+  <p>Return to the bag. Four simple steps. No bots required.</p>
 
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-name">GET A WALLET</div>
+      <div class="step-desc">Download Phantom or Solflare. Create your wallet. Guard your seed phrase with your life.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-name">GET SOL</div>
+      <div class="step-desc">Buy SOL on any exchange. Send it to your wallet. You are now in the trenches.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-name">GO TO PUMP.FUN</div>
+      <div class="step-desc">Head to pump.fun and search for $RTT or paste the contract address below.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-name">BUY & HOLD</div>
+      <div class="step-desc">Swap SOL for $RTT. Do not sell. Return to tradition. Hold until Valhalla.</div>
+    </div>
+  </div>
+
+  <div class="ca-box" onclick="copyCA()">
+    <span class="ca-box-label">CA</span>
+    <span class="ca-box-addr">ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump</span>
+    <span class="ca-box-hint" id="ca-hint2">⎘ Copy</span>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <h2>JOIN THE TRIBE</h2>
+  <p class="sub">The trenches are better with brothers. Find your people.</p>
+  <div class="comm-cards">
+    <a class="comm-card" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
+      <span class="comm-card-icon">✈️</span>
+      <div class="comm-card-name">Telegram</div>
+      <div class="comm-card-desc">Main community portal</div>
+    </a>
+    <a class="comm-card" href="#" target="_blank" rel="noopener">
+      <span class="comm-card-icon">🐦</span>
+      <div class="comm-card-name">Twitter / X</div>
+      <div class="comm-card-desc">Daily shill training</div>
+    </a>
+    <a class="comm-card" href="#" target="_blank" rel="noopener">
+      <span class="comm-card-icon">🔥</span>
+      <div class="comm-card-name">Pump.Fun</div>
+      <div class="comm-card-desc">Buy $RTT</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">RETURN TO TRADITION</div>
+  <div class="footer-logo">$RTT</div>
   <div class="footer-links">
     <a href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">Telegram ↗</a>
     <a href="#">Twitter ↗</a>
-    <a href="#">Buy $RTT ↗</a>
+    <a href="#">Buy on Pump.Fun ↗</a>
   </div>
   <div class="footer-disclaimer">
-    CA: ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump &nbsp;|&nbsp;
-    Not financial advice. Meme coins are highly speculative and mostly for entertainment.
-    Do your own research. The trenches claim no responsibility for your bags.
+    CA: ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump &nbsp;·&nbsp;
+    $RTT is a meme coin with no intrinsic value. Not financial advice. Do your own research.
   </div>
 </footer>
 
 <script>
-// ── COPY CA ──────────────────────────────────────────────────────────
 const CA = 'ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump';
 
 function copyCA() {
   navigator.clipboard.writeText(CA).catch(() => {});
-  const el = document.getElementById('ca-copy');
-  el.textContent = '✓ Copied!';
-  el.style.color = 'var(--gold)';
-  const nav = document.getElementById('nav-ca');
-  if (nav) { nav.textContent = 'CA: Copied! ✓'; nav.style.color = 'var(--gold)'; }
-  setTimeout(() => {
-    el.textContent = '⎘ Copy';
-    el.style.color = '';
-    if (nav) { nav.textContent = 'CA: ReTr4d1...pump'; nav.style.color = ''; }
-  }, 2000);
-}
-
-// ── SCROLL-REVEAL ─────────────────────────────────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
+  [
+    { id: 'ca-text',  done: '✓ Copied!', reset: CA },
+    { id: 'ca-hint',  done: '✓',         reset: '⎘ click to copy' },
+    { id: 'ca-hint2', done: '✓ Copied!', reset: '⎘ Copy' },
+  ].forEach(t => {
+    const el = document.getElementById(t.id);
+    if (!el) return;
+    el.textContent = t.done;
+    el.classList.add('ca-copied');
+    setTimeout(() => { el.textContent = t.reset; el.classList.remove('ca-copied'); }, 2000);
   });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.pillar-card, .commandment, .community-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
-
-// stagger cards
-document.querySelectorAll('.pillar-card').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.12) + 's';
-});
-document.querySelectorAll('.commandment').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.07) + 's';
-});
-document.querySelectorAll('.community-card').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.1) + 's';
-});
+}
 </script>
 </body>
 </html>
