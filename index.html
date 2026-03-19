@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RETURN TO TRADITION — The Way of the Trenches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #1a0e00;
+      --bg2:       #120a00;
+      --clay:      #c4621a;
+      --clay-dim:  rgba(196,98,26,0.15);
+      --clay-glow: rgba(196,98,26,0.5);
+      --gold:      #f5c842;
+      --gold-dim:  rgba(245,200,66,0.12);
+      --gold-glow: rgba(245,200,66,0.45);
+      --bone:      #f0e6c8;
+      --mud:       #3d1f00;
+      --moss:      #4a7c2f;
+      --blood:     #8b1a1a;
+      --border:    rgba(196,98,26,0.25);
+      --border-g:  rgba(245,200,66,0.2);
+      --muted:     rgba(240,230,200,0.45);
+      --font:      'Inter', sans-serif;
+      --display:   'Bebas Neue', sans-serif;
+      --marker:    'Permanent Marker', cursive;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--bone);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── CAVE TEXTURE OVERLAY ──────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(196,98,26,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(139,26,26,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(245,200,66,0.03) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    nav, main, footer, section { position: relative; z-index: 1; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(26,14,0,0.9);
+      backdrop-filter: blur(14px);
+    }
+
+    .logo {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      text-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .tg-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #229ED9, #1a7fbf);
+      color: #fff !important;
+      font-weight: 700 !important;
+      padding: 0.45rem 1.1rem !important;
+      border-radius: 8px;
+      transition: all 0.2s !important;
+      box-shadow: 0 0 18px rgba(34,158,217,0.3);
+    }
+    .tg-btn:hover {
+      box-shadow: 0 0 28px rgba(34,158,217,0.5) !important;
+      color: #fff !important;
+      transform: translateY(-1px);
+    }
+
+    .ca-nav {
+      font-family: monospace;
+      font-size: 0.65rem;
+      color: var(--clay) !important;
+      letter-spacing: 0.03em !important;
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.7rem !important;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s !important;
+    }
+    .ca-nav:hover { color: var(--gold) !important; border-color: var(--gold) !important; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--marker);
+      font-size: 1rem;
+      color: var(--clay);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s ease both;
+      transform-origin: center;
+    }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(4.5rem, 14vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.6rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+      background: linear-gradient(160deg, var(--bone) 0%, var(--gold) 50%, var(--clay) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(245,200,66,0.2));
+    }
+
+    .hero-subtitle {
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 4vw, 2.5rem);
+      letter-spacing: 0.08em;
+      color: var(--clay);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s 0.18s ease both;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 3rem;
+      animation: fadeUp 0.6s 0.26s ease both;
+    }
+
+    .hero-art {
+      font-size: 5rem;
+      margin: 1rem 0 2rem;
+      animation: fadeUp 0.6s 0.12s ease both, float 4s ease-in-out infinite;
+      display: block;
+      filter: drop-shadow(0 10px 30px rgba(196,98,26,0.4));
+    }
+
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+      animation: fadeUp 0.6s 0.32s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--clay), #8B3a0a);
+      color: var(--bone);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 4px 30px rgba(196,98,26,0.35);
+      letter-spacing: 0.04em;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px rgba(196,98,26,0.55);
+      background: linear-gradient(135deg, #d4722a, var(--clay));
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-g);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.25s;
+      letter-spacing: 0.04em;
+    }
+    .btn-secondary:hover {
+      background: rgba(245,200,66,0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 30px rgba(245,200,66,0.2);
+    }
+
+    /* CA Display */
+    .ca-display {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--clay-dim);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1.4rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s;
+      animation: fadeUp 0.6s 0.38s ease both;
+    }
+    .ca-display:hover {
+      border-color: var(--clay);
+      background: rgba(196,98,26,0.2);
+      box-shadow: 0 0 24px var(--clay-dim);
+    }
+    .ca-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--clay);
+    }
+    .ca-address {
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .ca-copy-hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .ca-display:hover .ca-copy-hint { color: var(--gold); }
+
+    /* ── MANIFESTO BANNER ─────────────────────────── */
+    .manifesto {
+      background: linear-gradient(90deg, var(--mud) 0%, #2a1200 50%, var(--mud) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .manifesto-text {
+      font-family: var(--marker);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--bone);
+      line-height: 1.5;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .manifesto-text .highlight { color: var(--gold); }
+    .manifesto-text .red { color: #e05555; }
+
+    /* ── PILLARS SECTION ──────────────────────────── */
+    .pillars {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header .eyebrow {
+      font-family: var(--marker);
+      color: var(--clay);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .section-header h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: 0.04em;
+      color: var(--bone);
+      line-height: 1;
+    }
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.8rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .pillar-card {
+      background: rgba(61,31,0,0.5);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 0%, rgba(196,98,26,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .pillar-card:hover::before { opacity: 1; }
+    .pillar-card:hover {
+      border-color: rgba(196,98,26,0.5);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(196,98,26,0.12);
+    }
+
+    .pillar-card.gold-card::before {
+      background: radial-gradient(circle at 50% 0%, rgba(245,200,66,0.1) 0%, transparent 60%);
+    }
+    .pillar-card.gold-card:hover {
+      border-color: rgba(245,200,66,0.4);
+      box-shadow: 0 20px 60px rgba(245,200,66,0.1);
+    }
+
+    .pillar-card.moss-card::before {
+      background: radial-gradient(circle at 50% 0%, rgba(74,124,47,0.12) 0%, transparent 60%);
+    }
+    .pillar-card.moss-card:hover {
+      border-color: rgba(74,124,47,0.45);
+      box-shadow: 0 20px 60px rgba(74,124,47,0.1);
+    }
+
+    .pillar-icon {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 1.2rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    .pillar-icon:nth-child(1) { animation-delay: 0s; }
+
+    .pillar-num {
+      font-family: var(--display);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--clay);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .gold-card .pillar-num { color: var(--gold); }
+    .moss-card .pillar-num { color: #6db84a; }
+
+    .pillar-title {
+      font-family: var(--display);
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      color: var(--bone);
+      margin-bottom: 1rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .pillar-motto {
+      margin-top: 1.2rem;
+      font-family: var(--marker);
+      font-size: 0.9rem;
+      color: var(--clay);
+      display: block;
+    }
+    .gold-card .pillar-motto { color: var(--gold); }
+    .moss-card .pillar-motto { color: #6db84a; }
+
+    /* ── THE CODE ─────────────────────────────────── */
+    .code-section {
+      background: linear-gradient(180deg, transparent, rgba(61,31,0,0.6) 20%, rgba(61,31,0,0.6) 80%, transparent);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 2rem;
+    }
+
+    .code-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .code-inner h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 6vw, 3.8rem);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      color: var(--bone);
+    }
+
+    .commandments {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      text-align: left;
+    }
+
+    .commandment {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(26,14,0,0.8);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      transition: all 0.2s;
+    }
+    .commandment:hover {
+      border-color: var(--clay);
+      background: var(--clay-dim);
+    }
+
+    .cmd-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .cmd-text {
+      font-size: 0.88rem;
+      color: var(--bone);
+      line-height: 1.5;
+      font-weight: 600;
+    }
+    .cmd-text span { color: var(--clay); }
+
+    /* ── SCROLL TICKER ────────────────────────────── */
+    .ticker-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+      background: rgba(61,31,0,0.4);
+    }
+
+    .ticker-inner {
+      display: flex;
+      gap: 3rem;
+      animation: scroll 28s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-item {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      color: var(--clay);
+      white-space: nowrap;
+    }
+
+    .ticker-item.gold { color: var(--gold); }
+    .ticker-item::before { content: '✦ '; }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── COMMUNITY ────────────────────────────────── */
+    .community {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem 7rem;
+      text-align: center;
+    }
+
+    .community h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      letter-spacing: 0.04em;
+      color: var(--bone);
+      margin-bottom: 1rem;
+    }
+
+    .community p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+    }
+
+    .community-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .community-card {
+      background: rgba(61,31,0,0.6);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      text-decoration: none;
+      color: var(--bone);
+      transition: all 0.3s;
+      min-width: 200px;
+    }
+    .community-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 50px rgba(196,98,26,0.15);
+    }
+    .community-card.tg-card {
+      border-color: rgba(34,158,217,0.3);
+    }
+    .community-card.tg-card:hover {
+      border-color: rgba(34,158,217,0.6);
+      box-shadow: 0 16px 50px rgba(34,158,217,0.15);
+    }
+
+    .community-card-icon { font-size: 2.5rem; display: block; margin-bottom: 0.8rem; }
+    .community-card-name {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+    .community-card-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--clay); }
+
+    .footer-disclaimer {
+      width: 100%;
+      font-size: 0.68rem;
+      color: rgba(240,230,200,0.18);
+      text-align: center;
+    }
+
+    /* ── DIVIDER ──────────────────────────────────── */
+    .cave-divider {
+      text-align: center;
+      color: var(--border);
+      font-size: 1.2rem;
+      letter-spacing: 0.4em;
+      padding: 0.5rem 0;
+      user-select: none;
+    }
+
+    /* ── ANIMATIONS ───────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 30px rgba(245,200,66,0.2)); }
+      50%       { filter: drop-shadow(0 0 50px rgba(245,200,66,0.45)); }
+    }
+
+    .hero-title { animation: fadeUp 0.6s 0.08s ease both, glowPulse 4s 1s ease infinite; }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 760px) {
+      nav { padding: 0.8rem 1.2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 5rem 1.25rem 4rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .commandments { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .ca-address { font-size: 0.58rem; max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">$RTT</div>
+  <ul class="nav-links">
+    <li><a href="#pillars">The Way</a></li>
+    <li><a href="#code">The Code</a></li>
+    <li><a href="#community">Community</a></li>
+    <li>
+      <a class="ca-nav" onclick="copyCA()" id="nav-ca">
+        CA: ReTr4d1...pump
+      </a>
+    </li>
+    <li>
+      <a class="tg-btn" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
+        ✈ Telegram
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-eyebrow">🦴 A message from the trenches</span>
+    <span class="hero-art">🪨</span>
+    <h1 class="hero-title">RETURN TO<br>TRADITION</h1>
+    <div class="hero-subtitle">The Ancient Art of the Trenches</div>
+    <p class="hero-desc">
+      Modern man forgot the old ways. He bought bots. He chased signals.
+      He paid for alpha groups. He got rugged. The ancients knew better —
+      bag deep, shill hard, stay in the trenches until Valhalla.
+    </p>
+
+    <div class="cta-group">
+      <a class="btn-primary" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
+        ✈ Join the Tribe
+      </a>
+      <a class="btn-secondary" href="#">
+        🔥 Buy $RTT
+      </a>
+    </div>
+
+    <div class="ca-display" onclick="copyCA()">
+      <span class="ca-label">CA</span>
+      <span class="ca-address" id="ca-addr">ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump</span>
+      <span class="ca-copy-hint" id="ca-copy">⎘ Copy</span>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <span class="ticker-item">RETURN TO TRADITION</span>
+      <span class="ticker-item gold">BAG DEEP OR GO HOME</span>
+      <span class="ticker-item">SHILL EVERYTHING</span>
+      <span class="ticker-item gold">THE TRENCHES ARE HOME</span>
+      <span class="ticker-item">NO BOTS ONLY SOUL</span>
+      <span class="ticker-item gold">HOLD THE LINE</span>
+      <span class="ticker-item">PRIMITIVE IS PROFITABLE</span>
+      <span class="ticker-item gold">THE ANCIENTS WERE RIGHT</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">RETURN TO TRADITION</span>
+      <span class="ticker-item gold">BAG DEEP OR GO HOME</span>
+      <span class="ticker-item">SHILL EVERYTHING</span>
+      <span class="ticker-item gold">THE TRENCHES ARE HOME</span>
+      <span class="ticker-item">NO BOTS ONLY SOUL</span>
+      <span class="ticker-item gold">HOLD THE LINE</span>
+      <span class="ticker-item">PRIMITIVE IS PROFITABLE</span>
+      <span class="ticker-item gold">THE ANCIENTS WERE RIGHT</span>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <div class="manifesto">
+    <p class="manifesto-text">
+      Modern man is <span class="red">weak</span>. He exits at <span class="red">-20%</span>.
+      He trusts <span class="red">CT influencers</span>. He has never felt the warmth of a
+      <span class="highlight">1000x</span> from the depths of the trenches.
+      Return to what works. Return to <span class="highlight">tradition</span>.
+    </p>
+  </div>
+
+  <!-- PILLARS -->
+  <section class="pillars" id="pillars">
+    <div class="section-header">
+      <span class="eyebrow">✦ The Three Sacred Pillars ✦</span>
+      <h2>THE OLD WAYS</h2>
+      <p>Before bots. Before KOLs. Before rugs. There were the ancient methods.</p>
+    </div>
+
+    <div class="pillars-grid">
+
+      <!-- TRENCHES -->
+      <div class="pillar-card">
+        <span class="pillar-icon">⚔️</span>
+        <div class="pillar-num">Pillar I</div>
+        <div class="pillar-title">THE TRENCHES</div>
+        <p class="pillar-desc">
+          Modern degens fear the red candle. The trench warrior embraces it.
+          Every dip is a gift. Every dump is a buying opportunity sent by the
+          crypto gods. You were not built for comfort. You were built for the
+          trenches — the place where legends are forged and rugs are merely
+          tuition fees for the next play.
+        </p>
+        <span class="pillar-motto">"If it doesn't make you nauseous, you're not in deep enough"</span>
+      </div>
+
+      <!-- BAGWORK -->
+      <div class="pillar-card gold-card">
+        <span class="pillar-icon">🎒</span>
+        <div class="pillar-num">Pillar II</div>
+        <div class="pillar-title">BAGWORK</div>
+        <p class="pillar-desc">
+          True bagwork is a sacred discipline. You do not panic sell your
+          conviction. You accumulate in silence, average down with discipline,
+          and hold with the patience of a caveman waiting for the mammoth.
+          The bag does not move — you move around the bag. Every wallet should
+          carry scars. Every position should have a story.
+        </p>
+        <span class="pillar-motto">"A heavy bag builds character. A sold bag builds regret."</span>
+      </div>
+
+      <!-- SHILL -->
+      <div class="pillar-card moss-card">
+        <span class="pillar-icon">📣</span>
+        <div class="pillar-num">Pillar III</div>
+        <div class="pillar-title">THE SHILL</div>
+        <p class="pillar-desc">
+          Before paid promotions and VC marketing budgets, there was the pure
+          shill. Man-to-man. Group-to-group. Telegram to Twitter to Discord.
+          The ancient shiller asked nothing in return — only that the line
+          went up. Post it everywhere. Tag everyone. Believe in the cause.
+          Organic shilling is the highest form of devotion.
+        </p>
+        <span class="pillar-motto">"He who shills without bags is a herald. He who shills with bags is a prophet."</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="cave-divider">✦ ✦ ✦ ✦ ✦</div>
+
+  <!-- THE CODE -->
+  <section class="code-section" id="code">
+    <div class="code-inner">
+      <h2>THE CODE OF THE ANCIENTS</h2>
+
+      <div class="commandments">
+        <div class="commandment">
+          <span class="cmd-icon">🪨</span>
+          <div class="cmd-text">
+            <span>Never sell in fear.</span> The red candle is a test of faith, not a signal to exit.
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">🔥</span>
+          <div class="cmd-text">
+            <span>Shill daily.</span> If you haven't posted about your bag today, did you even hold it?
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">🦴</span>
+          <div class="cmd-text">
+            <span>Average down.</span> The ancients called it "buying the dip". We call it surviving.
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">⚡</span>
+          <div class="cmd-text">
+            <span>No paper hands.</span> Diamond hands were forged in the trenches, not in the CT timeline.
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">🎯</span>
+          <div class="cmd-text">
+            <span>Community over everything.</span> A token without a tribe is just a smart contract.
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">🌿</span>
+          <div class="cmd-text">
+            <span>Trust the chart.</span> And if the chart betrays you, trust the conviction behind the chart.
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">⚔️</span>
+          <div class="cmd-text">
+            <span>Stay in the trenches.</span> The pumps reward those who never left. Never leave.
+          </div>
+        </div>
+        <div class="commandment">
+          <span class="cmd-icon">🪬</span>
+          <div class="cmd-text">
+            <span>Ape with purpose.</span> Know your entry, know your thesis, know you're probably ngmi regardless.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER 2 -->
+  <div class="ticker-wrap" style="animation: none;">
+    <div class="ticker-inner" style="animation-direction: reverse; animation-duration: 22s;">
+      <span class="ticker-item gold">WAGMI</span>
+      <span class="ticker-item">NGMI IF YOU SOLD</span>
+      <span class="ticker-item gold">THE TRENCHES NEVER SLEEP</span>
+      <span class="ticker-item">100X OR NOTHING</span>
+      <span class="ticker-item gold">BUY THE BLOOD</span>
+      <span class="ticker-item">RETURN TO TRADITION</span>
+      <span class="ticker-item gold">SHILL OR BE SHILLED</span>
+      <span class="ticker-item">BAGWORK IS HOLY</span>
+      <!-- duplicate -->
+      <span class="ticker-item gold">WAGMI</span>
+      <span class="ticker-item">NGMI IF YOU SOLD</span>
+      <span class="ticker-item gold">THE TRENCHES NEVER SLEEP</span>
+      <span class="ticker-item">100X OR NOTHING</span>
+      <span class="ticker-item gold">BUY THE BLOOD</span>
+      <span class="ticker-item">RETURN TO TRADITION</span>
+      <span class="ticker-item gold">SHILL OR BE SHILLED</span>
+      <span class="ticker-item">BAGWORK IS HOLY</span>
+    </div>
+  </div>
+
+  <!-- COMMUNITY -->
+  <section class="community" id="community">
+    <h2>JOIN THE TRIBE</h2>
+    <p>
+      The trenches are better with brothers. Find your people.
+      Share your bags. Shill together. Rise together.
+    </p>
+
+    <div class="community-cards">
+      <a class="community-card tg-card" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">
+        <span class="community-card-icon">✈️</span>
+        <div class="community-card-name">Telegram</div>
+        <div class="community-card-desc">Main community portal</div>
+      </a>
+      <a class="community-card" href="#" target="_blank" rel="noopener">
+        <span class="community-card-icon">🐦</span>
+        <div class="community-card-name">Twitter / X</div>
+        <div class="community-card-desc">Daily shill training</div>
+      </a>
+      <a class="community-card" href="#" target="_blank" rel="noopener">
+        <span class="community-card-icon">🔥</span>
+        <div class="community-card-name">Pump.Fun</div>
+        <div class="community-card-desc">Buy $RTT</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">RETURN TO TRADITION</div>
+  <div class="footer-links">
+    <a href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">Telegram ↗</a>
+    <a href="#">Twitter ↗</a>
+    <a href="#">Buy $RTT ↗</a>
+  </div>
+  <div class="footer-disclaimer">
+    CA: ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump &nbsp;|&nbsp;
+    Not financial advice. Meme coins are highly speculative and mostly for entertainment.
+    Do your own research. The trenches claim no responsibility for your bags.
+  </div>
+</footer>
+
+<script>
+// ── COPY CA ──────────────────────────────────────────────────────────
+const CA = 'ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump';
+
+function copyCA() {
+  navigator.clipboard.writeText(CA).catch(() => {});
+  const el = document.getElementById('ca-copy');
+  el.textContent = '✓ Copied!';
+  el.style.color = 'var(--gold)';
+  const nav = document.getElementById('nav-ca');
+  if (nav) { nav.textContent = 'CA: Copied! ✓'; nav.style.color = 'var(--gold)'; }
+  setTimeout(() => {
+    el.textContent = '⎘ Copy';
+    el.style.color = '';
+    if (nav) { nav.textContent = 'CA: ReTr4d1...pump'; nav.style.color = ''; }
+  }, 2000);
+}
+
+// ── SCROLL-REVEAL ─────────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.pillar-card, .commandment, .community-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// stagger cards
+document.querySelectorAll('.pillar-card').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.12) + 's';
+});
+document.querySelectorAll('.commandment').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.07) + 's';
+});
+document.querySelectorAll('.community-card').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.1) + 's';
+});
+</script>
+</body>
+</html>
