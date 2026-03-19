@@ -72,75 +72,61 @@
     }
     .btn-tg:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34,158,217,0.5); }
 
-    /* ── FLOATING TWEETS ────────────────── */
-    .tweets-float {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
+    /* ── TWEET COLUMNS ───────────────────── */
+    .hero-grid {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 240px 1fr 240px;
+      width: 100%;
+      max-width: 1320px;
+      min-height: 100vh;
+      align-items: center;
+      padding-top: 60px;
+    }
+
+    .tweet-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 80px 12px 60px;
+      align-self: stretch;
+      justify-content: center;
       overflow: hidden;
     }
 
     .tweet-card {
-      position: absolute;
-      width: 260px;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.15);
-      pointer-events: auto;
-      opacity: 0;
-      animation: tweet-in 0.6s ease forwards, tweet-drift var(--dur) ease-in-out infinite var(--delay);
-      transform-origin: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22), 0 2px 6px rgba(0,0,0,0.12);
+      flex-shrink: 0;
     }
+    .tweet-card img { width: 100%; display: block; }
 
-    .tweet-card img {
-      width: 100%;
-      display: block;
-      border-radius: 16px;
+    /* individual bobs with rotation baked in */
+    .tweet-card:nth-child(1) { animation: bob1 4.2s ease-in-out infinite; }
+    .tweet-card:nth-child(2) { animation: bob2 5.0s ease-in-out infinite 0.6s; }
+    .tweet-card:nth-child(3) { animation: bob3 3.9s ease-in-out infinite 1.2s; }
+    .tweet-card:nth-child(4) { animation: bob4 4.7s ease-in-out infinite 0.3s; }
+    .tweet-card:nth-child(5) { animation: bob5 4.4s ease-in-out infinite 0.9s; }
+
+    @keyframes bob1 { 0%,100%{transform:translateY(0) rotate(-2.5deg)} 50%{transform:translateY(-9px) rotate(-2.5deg)} }
+    @keyframes bob2 { 0%,100%{transform:translateY(0) rotate(2deg)}   50%{transform:translateY(-11px) rotate(2deg)} }
+    @keyframes bob3 { 0%,100%{transform:translateY(0) rotate(-1.5deg)} 50%{transform:translateY(-7px) rotate(-1.5deg)} }
+    @keyframes bob4 { 0%,100%{transform:translateY(0) rotate(3deg)}   50%{transform:translateY(-10px) rotate(3deg)} }
+    @keyframes bob5 { 0%,100%{transform:translateY(0) rotate(-3deg)}  50%{transform:translateY(-8px) rotate(-3deg)} }
+
+    @media (max-width: 1100px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .tweet-col { display: none; }
     }
-
-    @keyframes tweet-in {
-      from { opacity: 0; transform: scale(0.85) translateY(20px) rotate(var(--rot)); }
-      to   { opacity: 0.92; transform: scale(1) translateY(0) rotate(var(--rot)); }
-    }
-
-    @keyframes tweet-drift {
-      0%,100% { transform: rotate(var(--rot)) translateY(0px); }
-      50%      { transform: rotate(var(--rot)) translateY(var(--drift)); }
-    }
-
-    /* two clean columns — left edge and right edge, never touching center */
-    /* left column */
-    .tw1  { top: 8%;   left: 12px;  --rot: -3deg; --dur: 5.2s; --drift: -10px; animation-delay: 0.2s, 0.8s; }
-    .tw2  { top: 30%;  left: 18px;  --rot:  2deg; --dur: 6.4s; --drift:  12px; animation-delay: 0.5s, 1.1s; }
-    .tw3  { top: 53%;  left: 8px;   --rot: -2deg; --dur: 4.9s; --drift:  -8px; animation-delay: 0.8s, 1.4s; }
-    .tw10 { top: 74%;  left: 20px;  --rot:  3deg; --dur: 5.8s; --drift:  10px; animation-delay: 1.0s, 1.2s; }
-    .tw12 { top: 18%;  left: 6px;   --rot: -4deg; --dur: 6.2s; --drift: -12px; animation-delay: 0.3s, 0.9s; }
-    /* right column */
-    .tw4  { top: 6%;   right: 12px; --rot:  4deg; --dur: 5.6s; --drift:  12px; animation-delay: 0.4s, 0.6s; }
-    .tw5  { top: 28%;  right: 18px; --rot: -3deg; --dur: 6.1s; --drift: -10px; animation-delay: 0.6s, 1.2s; }
-    .tw6  { top: 51%;  right: 8px;  --rot:  2deg; --dur: 5.0s; --drift:   8px; animation-delay: 0.9s, 1.3s; }
-    .tw8  { top: 72%;  right: 14px; --rot: -4deg; --dur: 4.7s; --drift: -12px; animation-delay: 0.7s, 1.5s; }
-    .tw9  { top: 17%;  right: 22px; --rot:  3deg; --dur: 6.6s; --drift:  10px; animation-delay: 0.1s, 0.7s; }
-    .tw11 { top: 42%;  right: 6px;  --rot: -2deg; --dur: 5.4s; --drift: -8px;  animation-delay: 1.1s, 1.1s; }
-
-    @media (max-width: 1200px) { .tweet-card { width: 210px; } }
-    @media (max-width: 1000px) {
-      .tweet-card { width: 180px; }
-      .tw3, .tw6, .tw10, .tw12 { display: none; }
-    }
-    @media (max-width: 700px)  { .tweet-card { display: none; } }
 
     /* ── HERO — full sky scene ────────────── */
     .hero {
-      min-height: 100vh;
       position: relative;
       overflow: hidden;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding-top: 60px; /* nav height */
 
       background: linear-gradient(
         180deg,
@@ -258,10 +244,11 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 2rem 1.5rem 6rem;
-      width: 100%;
-      /* keep clear of tweet columns (~260px each side) */
-      max-width: 520px;
+      padding: 5rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero-kicker {
@@ -797,6 +784,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <!-- background layers -->
   <div class="clouds">
     <div class="cloud c1"></div>
     <div class="cloud c2"></div>
@@ -805,33 +793,39 @@
     <div class="cloud c5"></div>
     <div class="cloud c6"></div>
   </div>
-
-  <!-- Floating tweets -->
-  <div class="tweets-float">
-    <div class="tweet-card tw1"><img src="tweet1.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw2"><img src="tweet2.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw3"><img src="tweet3.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw4"><img src="tweet4.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw5"><img src="tweet5.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw6"><img src="tweet6.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw8"><img src="tweet8.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw9"><img src="tweet9.jpeg"  alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw10"><img src="tweet10.jpeg" alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw11"><img src="tweet11.jpeg" alt="tweet" loading="lazy" /></div>
-    <div class="tweet-card tw12"><img src="tweet12.jpeg" alt="tweet" loading="lazy" /></div>
-  </div>
   <div class="mountains"></div>
   <div class="treeline"></div>
   <div class="meadow"></div>
 
-  <div class="hero-content">
-    <span class="hero-kicker">a token for those who remember</span>
-    <h1 class="hero-title">RETURN TO<br><em>TRADITION</em></h1>
-    <img src="RTT.png" alt="Return to Tradition" class="hero-img" />
-    <div class="hero-ctas">
-      <a class="btn btn-green" href="#">🌿 Buy $RTT</a>
-      <a class="btn btn-blue" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">✈ Join the Tribe</a>
+  <!-- 3-column grid: tweets | content | tweets -->
+  <div class="hero-grid">
+
+    <div class="tweet-col">
+      <div class="tweet-card"><img src="tweet1.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet2.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet3.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet10.jpeg" alt="" /></div>
+      <div class="tweet-card"><img src="tweet12.jpeg" alt="" /></div>
     </div>
+
+    <div class="hero-content">
+      <span class="hero-kicker">a token for those who remember</span>
+      <h1 class="hero-title">RETURN TO<br><em>TRADITION</em></h1>
+      <img src="RTT.png" alt="Return to Tradition" class="hero-img" />
+      <div class="hero-ctas">
+        <a class="btn btn-green" href="#">🌿 Buy $RTT</a>
+        <a class="btn btn-blue" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">✈ Join Telegram</a>
+      </div>
+    </div>
+
+    <div class="tweet-col">
+      <div class="tweet-card"><img src="tweet4.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet5.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet6.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet9.jpeg"  alt="" /></div>
+      <div class="tweet-card"><img src="tweet11.jpeg" alt="" /></div>
+    </div>
+
   </div>
 </section>
 
