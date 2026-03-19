@@ -77,7 +77,7 @@
       position: relative;
       z-index: 10;
       display: grid;
-      grid-template-columns: 240px 1fr 240px;
+      grid-template-columns: 320px 1fr 320px;
       width: 100%;
       max-width: 1320px;
       min-height: 100vh;
@@ -88,8 +88,8 @@
     .tweet-col {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      padding: 80px 12px 60px;
+      gap: 18px;
+      padding: 80px 16px 60px;
       align-self: stretch;
       justify-content: center;
       overflow: hidden;
@@ -116,7 +116,7 @@
     @keyframes bob4 { 0%,100%{transform:translateY(0) rotate(3deg)}   50%{transform:translateY(-10px) rotate(3deg)} }
     @keyframes bob5 { 0%,100%{transform:translateY(0) rotate(-3deg)}  50%{transform:translateY(-8px) rotate(-3deg)} }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1280px) {
       .hero-grid { grid-template-columns: 1fr; }
       .tweet-col { display: none; }
     }
