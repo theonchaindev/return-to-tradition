@@ -109,26 +109,27 @@
       50%      { transform: rotate(var(--rot)) translateY(var(--drift)); }
     }
 
-    /* positions — scattered around the hero, avoiding centre */
-    .tw1  { top: 12%;  left: 2%;   --rot: -4deg;  --dur: 5.2s; --delay: 0.4s; --drift: -12px; animation-delay: 0.3s, 0.9s; }
-    .tw2  { top: 38%;  left: 0%;   --rot:  3deg;  --dur: 6.1s; --delay: 0s;   --drift: 10px;  animation-delay: 0.5s, 1.1s; }
-    .tw3  { top: 62%;  left: 3%;   --rot: -2deg;  --dur: 4.8s; --delay: 0.6s; --drift: -8px;  animation-delay: 0.7s, 1.3s; }
-    .tw4  { top: 10%;  right: 2%;  --rot:  5deg;  --dur: 5.6s; --delay: 0.2s; --drift: 14px;  animation-delay: 0.4s, 0.6s; }
-    .tw5  { top: 35%;  right: 1%;  --rot: -3deg;  --dur: 6.4s; --delay: 0.8s; --drift: -10px; animation-delay: 0.6s, 1.4s; }
-    .tw6  { top: 62%;  right: 3%;  --rot:  4deg;  --dur: 5.0s; --delay: 0.4s; --drift: 12px;  animation-delay: 0.8s, 1.2s; }
-    .tw8  { top: 78%;  left: 5%;   --rot: -5deg;  --dur: 5.8s; --delay: 0.2s; --drift: -14px; animation-delay: 1.0s, 1.2s; }
-    .tw9  { top: 82%;  right: 4%;  --rot:  3deg;  --dur: 4.6s; --delay: 0.6s; --drift: 10px;  animation-delay: 0.9s, 1.5s; }
-    .tw10 { top: 22%;  left: 1%;   --rot:  2deg;  --dur: 6.8s; --delay: 0.0s; --drift: -8px;  animation-delay: 1.1s, 1.1s; }
-    .tw11 { top: 20%;  right: 0%;  --rot: -4deg;  --dur: 5.4s; --delay: 0.4s; --drift: 12px;  animation-delay: 0.2s, 0.6s; }
-    .tw12 { top: 55%;  left: 1%;   --rot:  3deg;  --dur: 6.0s; --delay: 0.8s; --drift: -10px; animation-delay: 0.6s, 1.4s; }
+    /* two clean columns — left edge and right edge, never touching center */
+    /* left column */
+    .tw1  { top: 8%;   left: 12px;  --rot: -3deg; --dur: 5.2s; --drift: -10px; animation-delay: 0.2s, 0.8s; }
+    .tw2  { top: 30%;  left: 18px;  --rot:  2deg; --dur: 6.4s; --drift:  12px; animation-delay: 0.5s, 1.1s; }
+    .tw3  { top: 53%;  left: 8px;   --rot: -2deg; --dur: 4.9s; --drift:  -8px; animation-delay: 0.8s, 1.4s; }
+    .tw10 { top: 74%;  left: 20px;  --rot:  3deg; --dur: 5.8s; --drift:  10px; animation-delay: 1.0s, 1.2s; }
+    .tw12 { top: 18%;  left: 6px;   --rot: -4deg; --dur: 6.2s; --drift: -12px; animation-delay: 0.3s, 0.9s; }
+    /* right column */
+    .tw4  { top: 6%;   right: 12px; --rot:  4deg; --dur: 5.6s; --drift:  12px; animation-delay: 0.4s, 0.6s; }
+    .tw5  { top: 28%;  right: 18px; --rot: -3deg; --dur: 6.1s; --drift: -10px; animation-delay: 0.6s, 1.2s; }
+    .tw6  { top: 51%;  right: 8px;  --rot:  2deg; --dur: 5.0s; --drift:   8px; animation-delay: 0.9s, 1.3s; }
+    .tw8  { top: 72%;  right: 14px; --rot: -4deg; --dur: 4.7s; --drift: -12px; animation-delay: 0.7s, 1.5s; }
+    .tw9  { top: 17%;  right: 22px; --rot:  3deg; --dur: 6.6s; --drift:  10px; animation-delay: 0.1s, 0.7s; }
+    .tw11 { top: 42%;  right: 6px;  --rot: -2deg; --dur: 5.4s; --drift: -8px;  animation-delay: 1.1s, 1.1s; }
 
-    @media (max-width: 900px) {
-      .tweet-card { width: 200px; }
-      .tw3, .tw6, .tw8, .tw9, .tw10, .tw12 { display: none; }
+    @media (max-width: 1200px) { .tweet-card { width: 210px; } }
+    @media (max-width: 1000px) {
+      .tweet-card { width: 180px; }
+      .tw3, .tw6, .tw10, .tw12 { display: none; }
     }
-    @media (max-width: 600px) {
-      .tweet-card { display: none; }
-    }
+    @media (max-width: 700px)  { .tweet-card { display: none; } }
 
     /* ── HERO — full sky scene ────────────── */
     .hero {
@@ -138,9 +139,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
+      padding-top: 60px; /* nav height */
 
-      /* sky gradient matching the image */
       background: linear-gradient(
         180deg,
         #b8dff0 0%,
@@ -257,9 +258,10 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 0 1.5rem 4rem;
+      padding: 2rem 1.5rem 6rem;
       width: 100%;
-      max-width: 700px;
+      /* keep clear of tweet columns (~260px each side) */
+      max-width: 520px;
     }
 
     .hero-kicker {
@@ -786,9 +788,9 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">$RTT</div>
+  <div class="logo">Return to Tradition</div>
   <div class="nav-right">
-    <div class="nav-ca" onclick="copyCA()">CA: ReTr4d1t10n…pump</div>
+    <div class="nav-ca" onclick="copyCA()">CA: CMt4uq…pump</div>
     <a class="btn-tg" href="https://t.me/returntotraditionportal" target="_blank" rel="noopener">✈ Telegram</a>
   </div>
 </nav>
@@ -836,7 +838,7 @@
 <!-- CA BAR -->
 <div class="ca-bar" onclick="copyCA()">
   <span>Contract Address</span>
-  <span class="ca-val" id="ca-text">ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump</span>
+  <span class="ca-val" id="ca-text">CMt4uqjSJKqgyjVSeouJ3wRgGjaAfoSDCrEiNyJZpump</span>
   <span class="ca-hint" id="ca-hint">⎘ copy</span>
 </div>
 
@@ -985,7 +987,7 @@
 
   <div class="htb-ca" onclick="copyCA()">
     <span class="htb-ca-label">CA</span>
-    <span class="htb-ca-addr">ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump</span>
+    <span class="htb-ca-addr">CMt4uqjSJKqgyjVSeouJ3wRgGjaAfoSDCrEiNyJZpump</span>
     <span class="htb-ca-hint" id="ca-hint2">⎘ copy</span>
   </div>
 </section>
@@ -1029,13 +1031,13 @@
     <a href="#">Pump.Fun ↗</a>
   </div>
   <div class="footer-disclaimer">
-    CA: ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump &nbsp;·&nbsp;
+    CA: CMt4uqjSJKqgyjVSeouJ3wRgGjaAfoSDCrEiNyJZpump &nbsp;·&nbsp;
     $RTT is a meme coin. not financial advice. do your own research. the trenches claim no responsibility.
   </div>
 </footer>
 
 <script>
-const CA = 'ReTr4d1t10nXxXxXxXxXxXxXxXxXxXxXxXxXpump';
+const CA = 'CMt4uqjSJKqgyjVSeouJ3wRgGjaAfoSDCrEiNyJZpump';
 
 function copyCA() {
   navigator.clipboard.writeText(CA).catch(() => {});
